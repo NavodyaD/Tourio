@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Top Section with Blue Background -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="-28dp"
+            app:cardCornerRadius="29dp"
+            app:cardElevation="4dp"
+            app:cardBackgroundColor="#173F7B"
+            app:cardUseCompatPadding="false">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="24dp"
+                >
+
+                <View
+                    android:layout_width="48dp"
+                    android:layout_height="40dp"/>
+
+                <!-- Top Section Content -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+
+
+                    <!-- Profile Picture -->
+                    <View
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:background="@drawable/circle_background"
+                        android:layout_marginEnd="8dp" />
+
+                    <!-- Username and Subtitle -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Hi, John"
+                            android:textSize="20sp"
+                            android:textStyle="bold"
+                            android:textColor="#FFFFFF" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Welcome to Tourio"
+                            android:textSize="14sp"
+                            android:textColor="#DDDDDD" />
+                    </LinearLayout>
+
+                    <!-- Notifications Icon -->
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_notification"/>
+                </LinearLayout>
+
+                <!-- Heading -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Explore your dream
+                    destinations"
+                    android:textSize="22sp"
+                    android:lineHeight="30dp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginTop="16dp" />
+
+                <!-- Search Bar and Button -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="16dp">
+
+                    <!-- Search Bar -->
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_rounded_edittext"
+                        android:hint="Search"
+                        android:textSize="15dp"
+                        android:padding="12dp"
+                        android:textColor="#000000"
+                        android:textColorHint="#888888"
+                        android:layout_marginEnd="8dp" />
+
+                    <!-- Search Button -->
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_search"
+                        android:background="@drawable/shape_rounded_button"
+                        android:padding="8dp"
+                        app:tint="@color/app_primary_color" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Content Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Popular Tours -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Popular Tours"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="6dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Tour Box -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="180dp"
+                        android:layout_height="220dp"
+                        android:layout_marginEnd="0dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardUseCompatPadding="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:clipToOutline="true">
+
+                            <!-- Image Section -->
+                            <ImageView
+                                android:id="@+id/tour_image2"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_alignParentTop="true"
+                                android:src="@drawable/img_sigiriya_1"
+                                android:scaleType="centerCrop"
+                                android:clipToOutline="true"
+                                tools:ignore="DuplicateIds" />
+
+                            <!-- Bookmark Icon -->
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:padding="2dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_margin="8dp"
+                                android:background="@drawable/shape_rounded_button"
+                                android:src="@drawable/ic_bookmark"
+                                app:tint="@color/app_primary_color" />
+
+                            <!-- Title Below the Image -->
+                            <TextView
+                                android:id="@+id/home_item_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tour_image2"
+                                android:layout_marginTop="8dp"
+                                android:text="Sigiriya / Matale"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                tools:ignore="DuplicateIds" />
+
+                            <!-- Price Below the Title -->
+                            <TextView
+                                android:id="@+id/home_item_subtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/home_item_title"
+                                android:text="Matale / Dambulla Area"
+                                android:textSize="11sp"
+                                android:textColor="#888888"
+                                tools:ignore="DuplicateIds" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/home_item_subtitle"
+                                android:text="LKR 125,000"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="#1D1D1D" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="180dp"
+                        android:layout_height="220dp"
+                        android:layout_marginEnd="0dp"
+                        app:cardCornerRadius="10dp"
+                        app:cardElevation="5dp"
+                        app:cardBackgroundColor="#FFFFFF"
+                        app:cardUseCompatPadding="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="8dp"
+                            android:clipToOutline="true">
+
+                            <!-- Image Section -->
+                            <ImageView
+                                android:id="@+id/tour_image2"
+                                android:layout_width="match_parent"
+                                android:layout_height="100dp"
+                                android:layout_alignParentTop="true"
+                                android:src="@drawable/img_yala_1"
+                                android:scaleType="centerCrop"
+                                android:clipToOutline="true"
+                                tools:ignore="DuplicateIds" />
+
+                            <!-- Bookmark Icon -->
+                            <ImageView
+                                android:layout_width="22dp"
+                                android:layout_height="22dp"
+                                android:padding="2dp"
+                                android:layout_alignParentEnd="true"
+                                android:layout_margin="8dp"
+                                android:background="@drawable/shape_rounded_button"
+                                android:src="@drawable/ic_bookmark"
+                                app:tint="@color/app_primary_color" />
+
+                            <!-- Title Below the Image -->
+                            <TextView
+                                android:id="@+id/home_item_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/tour_image2"
+                                android:layout_marginTop="8dp"
+                                android:text="Yala / Ampara"
+                                android:textStyle="bold"
+                                android:textSize="16sp"
+                                tools:ignore="DuplicateIds" />
+
+                            <!-- Price Below the Title -->
+                            <TextView
+                                android:id="@+id/home_item_subtitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/home_item_title"
+                                android:text="Yala, Ampara Area"
+                                android:textSize="11sp"
+                                android:textColor="#888888"
+                                tools:ignore="DuplicateIds" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@id/home_item_subtitle"
+                                android:text="LKR 98,000"
+                                android:textStyle="bold"
+                                android:textSize="14sp"
+                                android:textColor="#1D1D1D" />
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+
+                    <!-- Add more boxes as needed -->
+
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- Recommended for You -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recommended for You"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <!-- Repeat the Tour Box Structure -->
+
+                </LinearLayout>
+            </HorizontalScrollView>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
