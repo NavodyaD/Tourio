@@ -1,8 +1,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Tourio" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/app_primary_color</item>
+        <item name="colorPrimaryVariant">@color/app_primary_color</item>
+        <item name="colorOnPrimary">@color/app_primary_color</item>
+
+        <item name="colorSecondary">@color/app_secondary_color</item>
+        <item name="colorSecondaryVariant">@color/app_secondary_color</item>
+        <item name="colorOnSecondary">@color/app_secondary_color</item>
+
+        <item name="android:statusBarColor">@color/app_secondary_color</item>
     </style>
 
     <style name="Theme.Tourio" parent="Base.Theme.Tourio" />

@@ -2,17 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/loginpage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    tools:context=".MainActivity">
+    android:background="@color/white">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:cardCornerRadius="32dp"
+        android:layout_marginHorizontal="30dp"
 
         android:layout_marginBottom="100dp"
         android:id="@+id/card_view">
@@ -20,7 +20,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/blue"
+            android:background="@color/white"
             android:alpha="0.7"/>
 
         <LinearLayout
@@ -36,7 +36,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="28dp">
+            android:padding="28dp"
+            android:elevation="10dp"
+            android:layout_margin="6dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +74,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Traveler"
-                    android:backgroundTint="@color/gray"
+                    android:textSize="11dp"
+                    android:backgroundTint="@color/app_primary_color"
                     android:textColor="@android:color/white"
                     android:layout_marginEnd="8dp"/>
 
@@ -83,7 +86,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Guide"
-                    android:backgroundTint="@color/gray"
+                    android:textSize="13dp"
+                    android:backgroundTint="@color/app_primary_color"
                     android:textColor="@android:color/white"
                     android:layout_marginEnd="8dp"/>
 
@@ -94,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Hotel"
-                    android:backgroundTint="@color/gray"
+                    android:backgroundTint="@color/app_primary_color"
                     android:textColor="@android:color/white"/>
             </LinearLayout>
 
@@ -169,19 +173,12 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:text="Login"
-                android:backgroundTint="@color/dark_blue"
+                android:textColor="@color/white"
+                android:backgroundTint="@color/app_primary_color"
                 app:cornerRadius="32dp"
                 android:id="@+id/loginBtn"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center">
-
-            </LinearLayout>
 
 
         </LinearLayout>

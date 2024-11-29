@@ -2,66 +2,104 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/feedbackpage"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_marginHorizontal="40dp"
+    android:layout_marginVertical="40dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Feedback"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:id="@+id/FeedbackTitle"
-        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Give Your feedback on tour"
-        android:textSize="20sp"
-        android:id="@+id/subText"
-        android:layout_below="@+id/FeedbackTitle"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Feedback"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:id="@+id/FeedbackTitle"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Give Your feedback on tour"
+            android:textSize="16dp"
+            android:id="@+id/subText"
+            android:layout_below="@+id/FeedbackTitle"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="How much you enjoyed the tour?"
+            android:layout_below="@+id/RatingBar"
+            android:textSize="18sp"/>
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/RatingBar"
+            android:numStars="5"
+            android:stepSize="1"
+            android:layout_centerHorizontal="true"/>
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Write your feedback on the tour"
+            android:id="@+id/reviewText"
+            android:layout_below="@+id/RatingBar"
+            android:textSize="18sp"/>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="10dp"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="top|start"
+            android:padding="10dp"
+            android:layout_margin="5dp"
+            android:id="@+id/review"
+            android:layout_below="@+id/reviewText"
+            android:background="@drawable/shape_rounded_button"
+            android:lines="6"
+            android:elevation="5dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            android:hint="Write your feedback" />
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"/>
 
 
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/RatingBar"
-        android:numStars="5"
-        android:stepSize="1"
-        android:layout_below="@+id/subText"
-        android:layout_centerHorizontal="true"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_button"
+            android:backgroundTint="#FFFF00"
+            android:theme="@null"
+            android:text="Send Feedback"
+            android:textSize="18sp"
+            android:textColor="@color/white"
+            />
 
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Write your review"
-        android:id="@+id/reviewText"
-        android:layout_below="@+id/RatingBar"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/review"
-        android:layout_below="@+id/reviewText"
-        android:hint="Review" />
-
-
-
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/submitBtn"
-        android:text="Submit"
-        android:textSize="30sp"
-        android:layout_below="@+id/review"
-        android:layout_centerHorizontal="true"/>
+    </LinearLayout>
 
 
 
