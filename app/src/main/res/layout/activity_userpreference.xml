@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/feedbackpage"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="40dp"
+        android:layout_marginVertical="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Preferences"
+            android:textSize="28dp"
+            android:textStyle="bold"
+            android:id="@+id/FeedbackTitle"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select what you love"
+            android:textSize="16dp"
+            android:id="@+id/subText"
+            android:layout_marginBottom="20dp"/>
+
+        <TextView
+            android:id="@+id/hii"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Your Prefered Countryside?"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <CheckBox
+                android:id="@+id/set_1_option_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Beach Side"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_1_option_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Hill Side"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_1_option_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Dry Side"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Prefered Types?"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <CheckBox
+                android:id="@+id/set_2_option_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Adventures"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_2_option_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Comfortable"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_2_option_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Relax"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <CheckBox
+                android:id="@+id/set_2_option_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Religous"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_2_option_5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Historical"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_2_option_6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Exploring"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Entertainment?"
+            android:textSize="17dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <CheckBox
+                android:id="@+id/set_3_option_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Water Act."
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_3_option_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Hiking"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_3_option_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Safari"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+
+            <CheckBox
+                android:id="@+id/set_3_option_4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/preference_selector"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="Surfing"
+                android:textColor="@color/pref_checkbox_text_color"
+                android:textSize="15dp"
+                android:layout_marginEnd="8dp"/>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/getstarted_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rounded_button"
+            android:backgroundTint="#FFFF00"
+            android:theme="@null"
+            android:text="Continue"
+            android:textSize="18sp"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

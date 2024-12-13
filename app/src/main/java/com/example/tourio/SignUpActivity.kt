@@ -1,107 +1,83 @@
 package com.example.tourio
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.*
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 
 class SignUpActivity : AppCompatActivity() {
+    // Firebase instances
+    private lateinit var auth: FirebaseAuth
+    private lateinit var firestore: FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_signup)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        // Initialize Firebase
+        auth = FirebaseAuth.getInstance()
+        firestore = FirebaseFirestore.getInstance()
 
-        val registerBtn: Button = findViewById(R.id.signupbtn)
-        val name: EditText = findViewById(R.id.name)
-        val age: EditText = findViewById(R.id.age)
-        val country: EditText = findViewById(R.id.country)
-        val email: EditText = findViewById(R.id.emailId)
-        val password: EditText = findViewById(R.id.passwordId)
-        val radioGroup: RadioGroup = findViewById(R.id.radioGroup)
+        // Get data from text fields
+        val userRoleRadioGroup: RadioGroup = findViewById(R.id.userRoleRadioGroup)
+        val nameField: EditText = findViewById(R.id.signNameText)
+        val ageField: EditText = findViewById(R.id.signAgeText)
+        val countryField: EditText = findViewById(R.id.signCountryText)
+        val emailField: EditText = findViewById(R.id.signEmailText)
+        val passwordField: EditText = findViewById(R.id.signPasswordText)
+        val signupButton: Button = findViewById(R.id.buttonSignUp)
 
-        registerBtn.setOnClickListener {
-            val nameText = name.text.toString().trim()
-            val ageText = age.text.toString().trim()
-            val countryText = country.text.toString().trim()
-            val emailText = email.text.toString().trim()
-            val passText = password.text.toString().trim()
+        // Sign up button click
+        signupButton.setOnClickListener {
+            val selectedRoleId = userRoleRadioGroup.checkedRadioButtonId
+            val userRole = findViewById<RadioButton>(selectedRoleId)?.text.toString()
+            val name = nameField.text.toString()
+            val age = ageField.text.toString()
+            val country = countryField.text.toString()
+            val email = emailField.text.toString()
+            val password = passwordField.text.toString()
 
-            val selectedRadioId = radioGroup.checkedRadioButtonId
-            val userType = when (selectedRadioId) {
-                R.id.travelerRadioButton -> "Traveler"
-                R.id.guideRadioButton -> "Guide"
-                R.id.hotelRadioButton -> "Hotel"
-                else -> null
+            if (name.isNotEmpty() && age.isNotEmpty() && country.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
+                registerUser(userRole, name, age, country, email, password)
+            } else {
+                Toast.makeText(this, "Please fill all the details to sign up", Toast.LENGTH_SHORT).show()
             }
-
-            if (nameText.isEmpty() || ageText.isEmpty() || countryText.isEmpty() || emailText.isEmpty() || passText.isEmpty() || userType == null) {
-                Toast.makeText(this, "Please fill out all fields and select a type", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (ageText.toIntOrNull() == null || ageText.toInt() <= 0) {
-                Toast.makeText(this, "Please enter a valid age", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            if (!android.util.Patterns.EMAIL_ADDRESS.matcher(emailText).matches()) {
-                Toast.makeText(this, "Invalid email format", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            // Log the registration data
-            Log.i("Registration Data", "Name: $nameText")
-            Log.i("Registration Data", "Age: $ageText")
-            Log.i("Registration Data", "Country: $countryText")
-            Log.i("Registration Data", "Email: $emailText")
-            Log.i("Registration Data", "Password: $passText")
-            Log.i("Registration Data", "Type: $userType")
-
-            val sharedPreferences = getSharedPreferences("UserPrefs", MODE_PRIVATE)
-            sharedPreferences.edit().apply {
-                putString("Name", nameText)
-                putString("Age", ageText)
-                putString("Country", countryText)
-                putString("Email", emailText)
-                putString("Type", userType)
-                apply()
-            }
-
-            val intent = Intent(this, LoginActivity::class.java)
-            intent.putExtra("email", emailText)
-            intent.putExtra("type", userType)
-            startActivity(intent)
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        Log.d("MainActivity", "onStart Called!")
-    }
+    private fun registerUser(userRole: String, name: String, age: String, country: String, email: String, password: String) {
+        // Create the user with email and password
+        auth.createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    // Save user details in Firestore
+                    val userId = auth.currentUser?.uid
+                    val user = mapOf(
+                        "userRole" to userRole,
+                        "name" to name,
+                        "age" to age,
+                        "country" to country,
+                        "email" to email
+                    )
 
-    override fun onResume() {
-        super.onResume()
-        Log.d("MainActivity", "onResume Called!")
-    }
-
-    override fun onPause() {
-        super.onPause()
-        Log.d("MainActivity", "onPause Called!")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Log.d("MainActivity", "onStop Called!")
+                    if (userId != null) {
+                        firestore.collection("Users")
+                            .document(userId)
+                            .set(user, SetOptions.merge()) // Merge if the document already exists
+                            .addOnCompleteListener { firestoreTask ->
+                                if (firestoreTask.isSuccessful) {
+                                    Toast.makeText(this, "Sign up successful!", Toast.LENGTH_SHORT).show()
+                                    // finish() // Close signup screen
+                                } else {
+                                    Toast.makeText(this, "Failed to save user details: ${firestoreTask.exception?.message}", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                    }
+                } else {
+                    Toast.makeText(this, "Sign up failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
     }
 }

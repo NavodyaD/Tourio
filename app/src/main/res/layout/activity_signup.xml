@@ -15,6 +15,7 @@
         android:layout_marginHorizontal="30dp"
         android:layout_marginBottom="10dp"
         android:id="@+id/card_view">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -63,14 +64,14 @@
                 android:layout_marginTop="5dp">
 
                 <RadioGroup
-                    android:id="@+id/radioGroup"
+                    android:id="@+id/userRoleRadioGroup"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center">
 
                     <RadioButton
-                        android:id="@+id/travelerRadioButton"
+                        android:id="@+id/travelerRB"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -80,7 +81,7 @@
                         android:layout_marginEnd="8dp"/>
 
                     <RadioButton
-                        android:id="@+id/guideRadioButton"
+                        android:id="@+id/guideRB"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -91,7 +92,7 @@
                         android:layout_marginEnd="8dp"/>
 
                     <RadioButton
-                        android:id="@+id/hotelRadioButton"
+                        android:id="@+id/hotelRB"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -116,7 +117,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/name"
+                android:id="@+id/signNameText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Your Name"
@@ -136,7 +137,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/age"
+                android:id="@+id/signAgeText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Your Age"
@@ -157,7 +158,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/country"
+                android:id="@+id/signCountryText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Your Country"
@@ -179,7 +180,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/emailId"
+                android:id="@+id/signEmailText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Your Email"
@@ -200,7 +201,7 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/passwordId"
+                android:id="@+id/signPasswordText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Enter Your Password"
@@ -217,6 +218,7 @@
                 android:layout_height="wrap_content">
 
                 <CheckBox
+                    android:id="@+id/checkboxRememberMe"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Remember me"
@@ -230,15 +232,13 @@
                 android:layout_height="10dp" />
 
             <Button
+                android:id="@+id/buttonSignUp"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:text="SignUp"
                 android:textColor="@color/white"
                 android:backgroundTint="@color/app_primary_color"
-                app:cornerRadius="32dp"
-                android:id="@+id/signupbtn"/>
-
-
+                app:cornerRadius="32dp" />
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
