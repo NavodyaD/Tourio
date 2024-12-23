@@ -2,6 +2,7 @@ package com.example.tourio
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -14,14 +15,16 @@ class MainActivity : AppCompatActivity() {
 
         val getStartedButton: Button = findViewById(R.id.getstarted_button)
 
-            getStartedButton.setOnClickListener {
-                val intent = Intent(this, SignUpActivity::class.java)
-                startActivity(intent)
-            }
+        getStartedButton.setOnClickListener {
+            val intent = Intent(this, SignUpActivity::class.java)
+            startActivity(intent)
+        }
         //ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.feedbackpage)) { v, insets ->
-            //val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            //v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            //insets
+        //val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        //v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+        //insets
         //}
     }
+
+    fun navigateToLogin(view: View) {}
 }

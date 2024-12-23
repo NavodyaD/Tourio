@@ -1,6 +1,8 @@
 package com.example.tourio
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -8,7 +10,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
 
 class SignUpActivity : AppCompatActivity() {
-    // Firebase instances
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
 
@@ -16,11 +17,9 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signup)
 
-        // Initialize Firebase
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()
 
-        // Get data from text fields
         val userRoleRadioGroup: RadioGroup = findViewById(R.id.userRoleRadioGroup)
         val nameField: EditText = findViewById(R.id.signNameText)
         val ageField: EditText = findViewById(R.id.signAgeText)
@@ -29,7 +28,6 @@ class SignUpActivity : AppCompatActivity() {
         val passwordField: EditText = findViewById(R.id.signPasswordText)
         val signupButton: Button = findViewById(R.id.buttonSignUp)
 
-        // Sign up button click
         signupButton.setOnClickListener {
             val selectedRoleId = userRoleRadioGroup.checkedRadioButtonId
             val userRole = findViewById<RadioButton>(selectedRoleId)?.text.toString()
@@ -48,11 +46,9 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun registerUser(userRole: String, name: String, age: String, country: String, email: String, password: String) {
-        // Create the user with email and password
         auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    // Save user details in Firestore
                     val userId = auth.currentUser?.uid
                     val user = mapOf(
                         "userRole" to userRole,
@@ -65,11 +61,13 @@ class SignUpActivity : AppCompatActivity() {
                     if (userId != null) {
                         firestore.collection("Users")
                             .document(userId)
-                            .set(user, SetOptions.merge()) // Merge if the document already exists
+                            .set(user, SetOptions.merge())
                             .addOnCompleteListener { firestoreTask ->
                                 if (firestoreTask.isSuccessful) {
                                     Toast.makeText(this, "Sign up successful!", Toast.LENGTH_SHORT).show()
-                                    // finish() // Close signup screen
+                                    val intent = Intent(this, HomePageActivity::class.java)
+                                    startActivity(intent)
+                                    finish()
                                 } else {
                                     Toast.makeText(this, "Failed to save user details: ${firestoreTask.exception?.message}", Toast.LENGTH_SHORT).show()
                                 }
@@ -79,5 +77,11 @@ class SignUpActivity : AppCompatActivity() {
                     Toast.makeText(this, "Sign up failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
+    }
+
+    fun navigateToLogin(view: View) {
+        val intent = Intent(this, LoginPageActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
