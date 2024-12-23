@@ -57,7 +57,7 @@
 
 
             <LinearLayout
-                 android:layout_width="match_parent"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:gravity="center"
@@ -211,17 +211,13 @@
                 android:focusable="true"/>
 
 
-
-
-
-
-                <CheckBox
-                    android:id="@+id/checkboxRememberMe"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Remember me"
-                    android:layout_centerVertical="true"
-                    android:alpha="0.7"/>
+            <CheckBox
+                android:id="@+id/checkboxRememberMe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remember me"
+                android:layout_centerVertical="true"
+                android:alpha="0.7"/>
 
 
 
@@ -246,7 +242,6 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="1dp"
                     android:text="Already have an account? Login here."
-
                     android:textSize="14sp"
                     android:textStyle="italic"
                     android:clickable="true"

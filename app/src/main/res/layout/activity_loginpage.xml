@@ -149,7 +149,6 @@
                 android:hint="Enter Your Password"
                 android:inputType="textPassword"
                 android:drawableEnd="@drawable/password_icon"
-
                 android:clickable="true"
                 android:focusable="true"/>
 

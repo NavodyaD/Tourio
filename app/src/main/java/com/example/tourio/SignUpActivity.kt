@@ -79,7 +79,8 @@ class SignUpActivity : AppCompatActivity() {
             }
     }
 
-    fun navigateToLogin(view: View) {
+    fun navigateToLogin(view: View)
+    {
         val intent = Intent(this, LoginPageActivity::class.java)
         startActivity(intent)
         finish()

@@ -28,8 +28,7 @@ class LoginPageActivity : AppCompatActivity() {
             val email = emailField.text.toString()
             val password = passwordField.text.toString()
 
-            if (email.isNotEmpty() && password.isNotEmpty())
-            {
+            if (email.isNotEmpty() && password.isNotEmpty()) {
                 loginUser(email, password)
             }
             else
