@@ -29,6 +29,8 @@
         <activity
             android:name=".LoginPageActivity"
             android:exported="true"/>
+
+        <activity android:name=".HotelSignFormActivity"/>
     </application>
 
 </manifest>

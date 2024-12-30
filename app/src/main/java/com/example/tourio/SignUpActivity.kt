@@ -64,12 +64,40 @@ class SignUpActivity : AppCompatActivity() {
                             .set(user, SetOptions.merge())
                             .addOnCompleteListener { firestoreTask ->
                                 if (firestoreTask.isSuccessful) {
-                                    Toast.makeText(this, "Sign up successful!", Toast.LENGTH_SHORT).show()
-                                    val intent = Intent(this, HomePageActivity::class.java)
-                                    startActivity(intent)
-                                    finish()
+                                    val currentUserRef = firestore.collection("Users").document(userId)
+                                    currentUserRef.get()
+                                        .addOnSuccessListener { document ->
+                                            if (document.exists()) {
+                                                val userRole = document.getString("userRole")
+                                                val userName = document.getString("name")
+
+                                                when (userRole) {
+                                                    "Traveler" -> {
+                                                        Toast.makeText(this, "Sign up successful!", Toast.LENGTH_SHORT).show()
+                                                        val intent = Intent(this, HomePageActivity::class.java)
+                                                        startActivity(intent)
+                                                        finish()
+                                                    }
+                                                    "Guide" -> {
+                                                        Toast.makeText(this, "Welcome, $userName!", Toast.LENGTH_SHORT).show()
+                                                        //val intent = Intent(this, GuideProfileActivity::class.java)
+                                                        //startActivity(intent)
+                                                        //finish()
+                                                    }
+                                                    "Hotel" -> {
+                                                        Toast.makeText(this, "Welcome, $userName!", Toast.LENGTH_SHORT).show()
+                                                        val intent = Intent(this, HotelSignFormActivity::class.java)
+                                                        startActivity(intent)
+                                                        finish()
+                                                    }
+                                                    else -> {
+                                                        Toast.makeText(this, "User role not recognized.", Toast.LENGTH_SHORT).show()
+                                                    }
+                                                }
+                                            }
+                                        }
                                 } else {
-                                    Toast.makeText(this, "Failed to save user details: ${firestoreTask.exception?.message}", Toast.LENGTH_SHORT).show()
+                                    Toast.makeText(this, "Failed to create account: ${firestoreTask.exception?.message}", Toast.LENGTH_SHORT).show()
                                 }
                             }
                     }

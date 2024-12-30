@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class LoginPageActivity : AppCompatActivity() {
 
@@ -41,20 +42,51 @@ class LoginPageActivity : AppCompatActivity() {
     private fun loginUser(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener { task ->
-                if (task.isSuccessful)
-                {
-                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                if (task.isSuccessful) {
+                    val currentUserId = auth.currentUser?.uid
+                    if (currentUserId != null) {
+                        // created the firestore reference
+                        val db = FirebaseFirestore.getInstance()
+                        val currentUserRef = db.collection("Users").document(currentUserId)
 
-                    // Navigate to HomePageActivity
-                    val intent = Intent(this, HomePageActivity::class.java)
-                    startActivity(intent)
-                    finish() // Close LoginPageActivity
-                }
-                else
-                {
+                        currentUserRef.get()
+                            .addOnSuccessListener { document ->
+                                if (document.exists()) {
+                                    val userRole = document.getString("userRole")
+                                    val userName = document.getString("name")
+
+                                    when (userRole) {
+                                        "Traveler" -> {
+                                            Toast.makeText(this, "Welcome, $userName!", Toast.LENGTH_SHORT).show()
+                                            val intent = Intent(this, HomePageActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                        "Guide" -> {
+                                            Toast.makeText(this, "Welcome, $userName!", Toast.LENGTH_SHORT).show()
+                                            val intent = Intent(this, HomePageActivity::class.java)
+                                            startActivity(intent)
+                                            finish()
+                                        }
+                                        else -> {
+                                            Toast.makeText(this, "User role not recognized.", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                } else {
+                                    Toast.makeText(this, "User details not found.", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            .addOnFailureListener { exception ->
+                                Toast.makeText(this, "Failed to fetch user details: ${exception.message}", Toast.LENGTH_SHORT).show()
+                            }
+                    } else {
+                        Toast.makeText(this, "Failed to get user ID.", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
                     Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
             }
     }
+
 }
 
