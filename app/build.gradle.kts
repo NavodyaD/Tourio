@@ -50,10 +50,19 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+
+
+
+
+
     implementation(libs.flexbox)
 
     // Import the Firebase BoM
     implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+
+    //Forget password Authentication
+    //implementation 'com.google.firebase:firebase-auth-ktx'
+
 
 
 }
