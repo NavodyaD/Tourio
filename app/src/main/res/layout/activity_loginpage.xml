@@ -13,7 +13,6 @@
         android:layout_alignParentBottom="true"
         app:cardCornerRadius="32dp"
         android:layout_marginHorizontal="30dp"
-
         android:layout_marginBottom="100dp"
         android:id="@+id/card_view">
 
@@ -59,7 +58,6 @@
                 android:text="Select who you are" />
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -90,7 +88,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="11dp"
-
                         android:text="Guide"
                         android:buttonTint="@color/gray"
                         android:layout_marginEnd="8dp"/>
@@ -101,7 +98,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:textSize="11dp"
-
                         android:text="Hotel"
                         android:buttonTint="@color/gray"
                         />
@@ -154,7 +150,7 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"/>
 
                 <CheckBox
                     android:layout_width="wrap_content"
@@ -163,19 +159,27 @@
                     android:layout_centerVertical="true"
                     android:alpha="0.7"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="I forgot my password"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"/>
-            </RelativeLayout>
 
             <View
                 android:layout_width="wrap_content"
-                android:layout_height="10dp" />
+                android:layout_height="1dp" />
+
+
+                <TextView
+                    android:id="@+id/textForgotPassword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="16dp"
+                    android:text="Forgot Password?"
+                    android:textSize="14sp"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="20dp" />
 
             <Button
                 android:layout_width="match_parent"
