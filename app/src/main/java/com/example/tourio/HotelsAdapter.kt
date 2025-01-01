@@ -1,16 +1,28 @@
 package com.example.tourio
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class HotelsAdapter(private val hotelList: List<Hotel>) : RecyclerView.Adapter<HotelsAdapter.HotelViewHolder>() {
+class HotelsAdapter(
+    private val hotelList: List<Hotel>,
+    private val onHotelClick: (String) -> Unit // Callback for click handling
+) : RecyclerView.Adapter<HotelsAdapter.HotelViewHolder>() {
 
     inner class HotelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val hotelNameTextView: TextView = itemView.findViewById(R.id.hotelName)
         val hotelAddressTextView: TextView = itemView.findViewById(R.id.hotelAddress)
+
+        init {
+            // handle the card view click event
+            itemView.setOnClickListener {
+                val userId = hotelList[adapterPosition].userId
+                onHotelClick(userId)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HotelViewHolder {

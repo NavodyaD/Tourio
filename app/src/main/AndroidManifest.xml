@@ -32,6 +32,8 @@
 
         <activity android:name=".HotelSignFormActivity"/>
 
+        <activity android:name=".HotelProfileUserViewActivity"/>
+
 
     </application>
     <uses-permission android:name="android.permission.INTERNET" />
