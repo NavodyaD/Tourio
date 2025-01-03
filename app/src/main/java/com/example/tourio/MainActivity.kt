@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_hotelspage)
+        setContentView(R.layout.activity_booktour)
 
         //val getStartedButton: Button = findViewById(R.id.getstarted_button)
 
