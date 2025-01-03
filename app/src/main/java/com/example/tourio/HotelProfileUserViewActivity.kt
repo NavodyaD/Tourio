@@ -36,7 +36,7 @@ class HotelProfileUserViewActivity : AppCompatActivity() {
                     findViewById<TextView>(R.id.hotelDes).text = hotelDes
                     findViewById<TextView>(R.id.hotelFacilities).text = hotelFacilities
 
-                    val hotelCoverImage = findViewById<ImageView>(R.id.hotelProfileCoverImg)
+                    val hotelCoverImage = findViewById<ImageView>(R.id.hotelUserViewProfileCoverImg)
                     if (!hotelImageUrl.isNullOrEmpty()) {
                         Glide.with(this)
                             .load(hotelImageUrl)  // load the image URL from Firebase

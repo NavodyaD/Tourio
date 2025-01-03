@@ -68,6 +68,13 @@ class LoginPageActivity : AppCompatActivity() {
                                             startActivity(intent)
                                             finish()
                                         }
+                                        "Hotel" -> {
+                                            Toast.makeText(this, "Welcome, $userName!", Toast.LENGTH_SHORT).show()
+                                            val intent = Intent(this, HotelProfileActivity::class.java)
+                                            intent.putExtra("userId", currentUserId)
+                                            startActivity(intent)
+                                            finish()
+                                        }
                                         else -> {
                                             Toast.makeText(this, "User role not recognized.", Toast.LENGTH_SHORT).show()
                                         }

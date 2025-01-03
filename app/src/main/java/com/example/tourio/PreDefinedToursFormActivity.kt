@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.coroutines.delay
 
 class PreDefinedToursFormActivity : AppCompatActivity()
 {
@@ -56,6 +57,7 @@ class PreDefinedToursFormActivity : AppCompatActivity()
 
             // Create a map to store the preDefined tours data
             val tourData = hashMapOf(
+                "tourTitle" to tourTitle,
                 "destination1" to destination1,
                 "des1MapUrl" to des1MapUrl,
                 "destination2" to destination2,
@@ -72,21 +74,37 @@ class PreDefinedToursFormActivity : AppCompatActivity()
                 "option3" to option3,
                 "guideProfile" to guideProfile,
                 "facilities" to facilities,
-                "tourPrice" to tourPrice// Associate with current user's ID
+                "tourPrice" to tourPrice,
+                "hoteluserId" to userId,
             )
 
-            // Add data to the 'preDefinedTours' collection
-            db.collection("preDefineTours")
-                .add(tourData) // Automatically generates a document ID
+            // add data to the 'preDefinedTours' collection
+            db.collection("PredefinedTours")
+                .add(tourData) // This automatically generates a document ID
                 .addOnSuccessListener { documentReference ->
-                    Toast.makeText(this, "The tour has been created successfully!", Toast.LENGTH_SHORT).show()
+                    // Get the generated document ID
+                    val generatedPreDefTourId = documentReference.id
+
+                    // Update the tourData map to include the generated tourId
+                    val updatedTourData = tourData.toMutableMap()
+                    updatedTourData["preDefTourId"] = generatedPreDefTourId
+
+                    // Now, update the Firestore document with the tourId field
+                    documentReference.set(updatedTourData) // Overwrite the document with the updated data
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "The tour published successfully!", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to create the tour. Please try again: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
         } else {
             // If user is not logged in
-            Toast.makeText(this, "Cannot Identify the User", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "You're not logged in", Toast.LENGTH_SHORT).show()
         }
     }
 }

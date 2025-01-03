@@ -23,9 +23,9 @@
             app:cardUseCompatPadding="false">
 
             <ImageView
+                android:id="@+id/hotelProfileCoverImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/amari_colombo_1"
                 android:scaleType="centerCrop"
                 android:layout_alignParentTop="true" />
 
@@ -55,6 +55,7 @@
                         android:layout_weight="1" />
 
                     <Button
+                        android:id="@+id/newTourButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="New Tour"
@@ -69,9 +70,9 @@
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/hotelProfileName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Amari Colombo"
                     android:layout_gravity="center"
                     android:textSize="22sp"
                     android:lineHeight="30dp"
@@ -102,24 +103,24 @@
             android:paddingTop="12dp">
 
             <TextView
+                android:id="@+id/hotelProfileAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Galle-Colombo Rd, Colombo"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="6dp" />
 
             <TextView
+                android:id="@+id/hotelProfileDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hotel Description Appears Here"
                 android:textSize="14dp"
                 android:layout_marginBottom="6dp" />
 
             <TextView
+                android:id="@+id/hotelProfileFacilities"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Facilities: Swimming Pool, Wi-fi, Sea View, Open Bar"
                 android:textSize="14dp"
                 android:layout_marginBottom="16dp" />
 
