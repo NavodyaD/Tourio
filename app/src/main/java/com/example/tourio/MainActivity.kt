@@ -18,7 +18,11 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+<<<<<<< Updated upstream
         setContentView(R.layout.activity_booktour)
+=======
+        setContentView(R.layout.activity_getstarted)
+>>>>>>> Stashed changes
 
         //val getStartedButton: Button = findViewById(R.id.getstarted_button)
 
