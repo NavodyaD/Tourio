@@ -16,7 +16,11 @@ class MainActivity : AppCompatActivity() {
          findViewById<BottomNavigationView>(R.id.bottom_menue).setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.homepage -> replacementFragment(HomeFragment())
-                R.id.feedbackpage -> replacementFragment(HotelFragment())
+                R.id.hotel -> replacementFragment(HotelFragment())
+                R.id.request -> replacementFragment(RequestFragment())
+                R.id.profile -> replacementFragment(ProfileFragment())
+
+
 
                 else -> false
             }

@@ -6,23 +6,19 @@
     android:icon="@drawable/ic_home"
     />
     <item
-        android:id="@+id/bottom_requests"
+        android:id="@+id/request"
         android:title="Reqests"
         android:icon="@drawable/ic_requests"
 
         />
     <item
-        android:id="@+id/bottom_hottel"
+        android:id="@+id/hotel"
         android:title="Hotel"
         android:icon="@drawable/ic_hotels"
         />
+
     <item
-        android:id="@+id/bottom_message"
-        android:title="Messages"
-        android:icon="@drawable/ic_message"
-        />
-    <item
-        android:id="@+id/bottom_profile"
+        android:id="@+id/profile"
         android:title="Profiles"
         android:icon="@drawable/ic_profiles"
         />
