@@ -1,36 +1,68 @@
 package com.example.tourio
 
+import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.FirebaseFirestore
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var adapter: HotelsAdapter
+    private val hotelsList = mutableListOf<Hotel>()
+
+    @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_hotelspage)
 
-         replacementFragment(HomeFragment())
+        val recyclerView = findViewById<RecyclerView>(R.id.myrecyclerView)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-         findViewById<BottomNavigationView>(R.id.bottom_menue).setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.homepage -> replacementFragment(HomeFragment())
-                R.id.hotel -> replacementFragment(HotelFragment())
-                R.id.request -> replacementFragment(RequestFragment())
-                R.id.profile -> replacementFragment(ProfileFragment())
-
-
-
-                else -> false
-            }
-            true
+        adapter = HotelsAdapter(hotelsList) { userId ->
+            // navigate user to hotel details page with userId
+            val intent = Intent(this, HotelProfileUserViewActivity::class.java)
+            intent.putExtra("userId", userId)
+            startActivity(intent)
         }
+        recyclerView.adapter = adapter
+
+        fetchHotelsFromFirestore()
+
+        //super.onCreate(savedInstanceState)
+
+        //val getStartedButton: Button = findViewById(R.id.getstarted_button)
+
+        //getStartedButton.setOnClickListener {
+            //val intent = Intent(this, SignUpActivity::class.java)
+            //startActivity(intent)
+        //}
+        // -------------------
+        //ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.feedbackpage)) { v, insets ->
+        //val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+        //v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+        //insets
+        //}
     }
 
-     private fun replacementFragment(fragment: Fragment) {
-        val fragmentTransaction = supportFragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout, fragment)
-        fragmentTransaction.commit()
+    private fun fetchHotelsFromFirestore() {
+        val db = FirebaseFirestore.getInstance()
+        db.collection("Hotels").get()
+            .addOnSuccessListener { result ->
+                hotelsList.clear()
+                for (document in result) {
+                    val hotel = document.toObject(Hotel::class.java)
+                    hotelsList.add(hotel)
+                }
+                adapter.notifyDataSetChanged()
+            }
     }
+
+    fun navigateToLogin(view: View) {}
 }

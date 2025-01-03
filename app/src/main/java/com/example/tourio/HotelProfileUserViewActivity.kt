@@ -1,9 +1,11 @@
 package com.example.tourio
 
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HotelProfileUserViewActivity : AppCompatActivity() {
@@ -26,12 +28,22 @@ class HotelProfileUserViewActivity : AppCompatActivity() {
                     val hotelAddress = document.getString("hotelAddress")
                     val hotelDes = document.getString("hotelDescription")
                     val hotelFacilities = document.getString("hotelFacilities")
+                    val hotelImageUrl = document.getString("hotelCoverImgURL")
 
                     // set values to text fields in details page
                     findViewById<TextView>(R.id.hotelName).text = hotelName
                     findViewById<TextView>(R.id.hotelAddress).text = hotelAddress
                     findViewById<TextView>(R.id.hotelDes).text = hotelDes
                     findViewById<TextView>(R.id.hotelFacilities).text = hotelFacilities
+
+                    val hotelCoverImage = findViewById<ImageView>(R.id.hotelProfileCoverImg)
+                    if (!hotelImageUrl.isNullOrEmpty()) {
+                        Glide.with(this)
+                            .load(hotelImageUrl)  // load the image URL from Firebase
+                            .into(hotelCoverImage) // display the image in ImageView
+                    } else {
+                        hotelCoverImage.setImageResource(R.drawable.img_sigiriya_1)  // set default image if URL is null or empty
+                    }
                 } else {
                     Toast.makeText(this, "Cannot display hotel details", Toast.LENGTH_SHORT).show()
                 }
