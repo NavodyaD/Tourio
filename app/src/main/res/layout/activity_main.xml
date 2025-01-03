@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-<<<<<<< Updated upstream
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,13 +21,12 @@
         android:background="@color/blue"
         app:itemIconTint="@color/white"
         app:itemIconSize="300dp"/>
-=======
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/frame_container" />
->>>>>>> Stashed changes
+        android:id="@+id/frame_container"
+        tools:ignore="DuplicateIds" />
 
     <com.google.android.material.navigation.NavigationView
         android:layout_width="match_parent"
@@ -40,6 +38,7 @@
         app:menu="@menu/bottom_menu"
         android:background="@color/blue"
         app:itemIconTint="@color/white"
-        app:itemIconSize="300dp" />
+        app:itemIconSize="300dp"
+        tools:ignore="DuplicateIds" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

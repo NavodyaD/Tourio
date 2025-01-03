@@ -11,6 +11,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/hotelCardBGImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+        android:scaleType="centerCrop" />
+
         <LinearLayout
             android:id="@+id/bottom_linear_layout"
             android:layout_width="match_parent"

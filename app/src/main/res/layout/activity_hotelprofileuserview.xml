@@ -23,9 +23,9 @@
             app:cardUseCompatPadding="false">
 
             <ImageView
+                android:id="@+id/hotelProfileCoverImg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/img_hilton_colombo"
                 android:scaleType="centerCrop"
                 android:layout_alignParentTop="true" />
 
