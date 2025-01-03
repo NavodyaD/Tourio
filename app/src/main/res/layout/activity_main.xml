@@ -7,24 +7,16 @@
     android:layout_height="match_parent"
     android:orientation="horizontal"
     tools:context=".MainActivity">
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/frame_container"/>
-<com.google.android.material.navigation.NavigationView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/bottom_navigation"
-    app:layout_constraintstart_tostartor="parent"
-    app:layout_constraintstart_toEndOf="parent"
-    app:layout_constraintstart_toBottomOf="parent"
-    app:menu="@menu/bottom_menu"
-    android:background="@color/blue"
-    app:itemIconTint="@color/white"
-    app:itemIconSize="300dp"
-    itemActiveIndicatorstyle="@style/app.custom.Idicator"/>
 
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </LinearLayout>

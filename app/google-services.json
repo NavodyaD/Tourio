@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "421819462609",
-    "project_id": "tourioproject",
-    "storage_bucket": "tourioproject.firebasestorage.app"
+    "project_number": "410526679500",
+    "project_id": "tourio-bb9bd",
+    "storage_bucket": "tourio-bb9bd.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:421819462609:android:7d684d9506529a825426f0",
+        "mobilesdk_app_id": "1:410526679500:android:be3de6013b3bc96d239d69",
         "android_client_info": {
           "package_name": "com.example.tourio"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyAh-gHweQGXUtfL_iyCyuDJvB2aQ-0XyaM"
+          "current_key": "AIzaSyDlZZtqvX5paxNTVBSrdVavkyAjWCOLqWE"
         }
       ],
       "services": {

@@ -12,7 +12,7 @@ class HomePageActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_homepage)
 
-        val userInputLink = "https://matthews.sites.wfu.edu/misc/graphics/ResVsComp/50percent_444x2.png" // This would come from EditText or another source
+        val userInputLink = "https://media.onyx-hospitality.com/-/media/project/amari/common/property/colombo/index/highlight_location.jpg?rev=c90fde7c6c8c4bed8111e51f8416e113" // This would come from EditText or another source
         val imageView: ImageView = findViewById(R.id.tour_image2)
 
 
