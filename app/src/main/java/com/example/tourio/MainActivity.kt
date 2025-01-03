@@ -1,36 +1,36 @@
 package com.example.tourio
 
-import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.firestore.FirebaseFirestore
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_getstarted)
+        setContentView(R.layout.activity_main)
 
-        val getStartedButton: Button = findViewById(R.id.getstarted_button)
+        replacementFragment(HomeFragment())
 
-        getStartedButton.setOnClickListener {
-            val intent = Intent(this, SignUpActivity::class.java)
-            startActivity(intent)
+        findViewById<BottomNavigationView>(R.id.bottom_menue).setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.homepage -> replacementFragment(HomeFragment())
+                R.id.hotel -> replacementFragment(HotelFragment())
+                R.id.request -> replacementFragment(RequestFragment())
+                R.id.profile -> replacementFragment(ProfileFragment())
+
+
+
+                else -> false
+            }
+            true
         }
-        // -------------------
-        //ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.feedbackpage)) { v, insets ->
-        //val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-        //v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-        //insets
-        //}
     }
 
-    fun navigateToLogin(view: View) {}
+    private fun replacementFragment(fragment: Fragment) {
+        val fragmentTransaction = supportFragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout, fragment)
+        fragmentTransaction.commit()
+    }
 }
