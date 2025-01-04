@@ -8,7 +8,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.google.firebase.firestore.FirebaseFirestore
 
 class HomePageActivity : AppCompatActivity() {
@@ -34,16 +33,6 @@ class HomePageActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         fetchPreDefToursFromFirestore()
-
-        val userInputLink = "https://media.onyx-hospitality.com/-/media/project/amari/common/property/colombo/index/highlight_location.jpg?rev=c90fde7c6c8c4bed8111e51f8416e113" // This would come from EditText or another source
-        val imageView: ImageView = findViewById(R.id.tour_image2)
-
-
-        //fun extractFileId(driveLink: String): String? {
-           // val regex = """(?:/d/|file/d/)([^/]+)""".toRegex()
-            //val matchResult = regex.find(driveLink)
-            //return matchResult?.groupValues?.get(1)
-        //}
     }
 
     private fun fetchPreDefToursFromFirestore() {

@@ -48,11 +48,9 @@ class HotelProfileActivity : AppCompatActivity() {
                     findViewById<TextView>(R.id.hotelProfileFacilities).text = hotelFacilities
 
                     val hotelCoverImage = findViewById<ImageView>(R.id.hotelProfileCoverImg)
-                    if (!hotelImageUrl.isNullOrEmpty()) {
+                    if (hotelImageUrl.isNotEmpty()) {
                         Glide.with(this)
                             .load(hotelImageUrl)
-                            .placeholder(R.drawable.img_sigiriya_1)  // Display a placeholder while loading
-                            .error(R.drawable.amari_colombo_1)// load the image URL from Firebase
                             .into(hotelCoverImage) // display the image in ImageView
                     } else {
                         hotelCoverImage.setImageResource(R.drawable.img_sigiriya_1)  // set default image if URL is null or empty

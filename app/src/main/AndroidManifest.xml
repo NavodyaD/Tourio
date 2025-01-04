@@ -42,6 +42,8 @@
 
         <activity android:name=".UserToursRequestFormActivity"/>
 
+        <activity android:name=".HomeNavBarActivity"/>
+
 
 
     </application>
