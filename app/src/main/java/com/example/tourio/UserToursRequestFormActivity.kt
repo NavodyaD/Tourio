@@ -14,13 +14,13 @@ class UserToursRequestFormActivity : AppCompatActivity()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_usertoursrequestform)
 
-        val continueButton = findViewById<Button>(R.id.buttonPost)
+        val continueButton = findViewById<Button>(R.id.tourReqPostButton)
         continueButton.setOnClickListener {
-            addUserTourRequests()
+            addUserTourRequest()
         }
     }
 
-    private fun addUserTourRequests() {
+    private fun addUserTourRequest() {
         val db = FirebaseFirestore.getInstance()
         val currentUser = FirebaseAuth.getInstance().currentUser
 
@@ -28,51 +28,66 @@ class UserToursRequestFormActivity : AppCompatActivity()
             val userId = currentUser.uid
 
             // Get data from EditText fields
-            val tourTitle = findViewById<EditText>(R.id.tourTitle).text.toString()
-            val destination1 = findViewById<EditText>(R.id.destination1).text.toString()
-            val des1MapUrl = findViewById<EditText>(R.id.des1MapUrl).text.toString()
-            val destination2= findViewById<EditText>(R.id.destination2).text.toString()
-            val des2MapUrl= findViewById<EditText>(R.id.des2MapUrl).text.toString()
-            val destination3= findViewById<EditText>(R.id.destination3).text.toString()
-            val des3MapUrl= findViewById<EditText>(R.id.des3MapUrl).text.toString()
-            val destination4= findViewById<EditText>(R.id.destination4).text.toString()
-            val des4MapUrl= findViewById<EditText>(R.id.des4MapUrl).text.toString()
-            val destination5 = findViewById<EditText>(R.id.destination5).text.toString()
-            val des5MapUrl = findViewById<EditText>(R.id.des5MapUrl).text.toString()
-            val acceptedBudget= findViewById<EditText>(R.id.acceptedBudget).text.toString()
-            val specialNotes = findViewById<EditText>(R.id.specialNotes).text.toString()
-            val buttonPost = findViewById<EditText>(R.id.buttonPost).text.toString()
+            val tourReqTitle = findViewById<EditText>(R.id.tourReqTitle).text.toString()
+            val tourReqestination1 = findViewById<EditText>(R.id.tourReqDestination1).text.toString()
+            val tourReqdes1MapUrl = findViewById<EditText>(R.id.tourReqDes1MapUrl).text.toString()
+            val tourReqdestination2= findViewById<EditText>(R.id.tourReqDestination2).text.toString()
+            val tourReqdes2MapUrl= findViewById<EditText>(R.id.tourReqDes2MapUrl).text.toString()
+            val tourReqdestination3= findViewById<EditText>(R.id.tourReqDestination3).text.toString()
+            val tourReqdes3MapUrl= findViewById<EditText>(R.id.tourReqDes3MapUrl).text.toString()
+            val tourReqdestination4= findViewById<EditText>(R.id.tourReqDestination4).text.toString()
+            val tourReqdes4MapUrl= findViewById<EditText>(R.id.tourReqDes4MapUrl).text.toString()
+            val tourReqdestination5 = findViewById<EditText>(R.id.tourReqDestination5).text.toString()
+            val tourReqdes5MapUrl = findViewById<EditText>(R.id.tourReqDes5MapUrl).text.toString()
+            val tourReqBudget= findViewById<EditText>(R.id.tourReqBudget).text.toString()
+            val tourReqNotes = findViewById<EditText>(R.id.tourReqNotes).text.toString()
 
 
-            if (tourTitle.isEmpty() || destination1.isEmpty() || des1MapUrl.isEmpty() || destination2.isEmpty() || des2MapUrl.isEmpty() || destination3.isEmpty()
-                || des3MapUrl.isEmpty() || des3MapUrl.isEmpty() || destination4.isEmpty() || des4MapUrl.isEmpty() || destination5.isEmpty() || des5MapUrl.isEmpty()
-                || acceptedBudget.isEmpty() || specialNotes.isEmpty() || buttonPost.isEmpty()) {
+            if (tourReqTitle.isEmpty() || tourReqestination1.isEmpty() || tourReqdes1MapUrl.isEmpty() || tourReqdestination2.isEmpty() || tourReqdes2MapUrl.isEmpty() || tourReqdestination3.isEmpty()
+                || tourReqdes3MapUrl.isEmpty() || tourReqdestination4.isEmpty() || tourReqdes4MapUrl.isEmpty() || tourReqdestination5.isEmpty() || tourReqdes5MapUrl.isEmpty()
+                || tourReqBudget.isEmpty() || tourReqNotes.isEmpty()) {
                 Toast.makeText(this, "Please fill out all fields.", Toast.LENGTH_SHORT).show()
                 return
             }
 
             // Create a map to store the preDefined tours data
-            val tourData = hashMapOf(
-                "destination1" to destination1,
-                "des1MapUrl" to des1MapUrl,
-                "destination2" to destination2,
-                "des2MapUrl" to des2MapUrl,
-                "destination3" to destination3,
-                "des3MapUrl" to des3MapUrl,
-                "destination4" to destination4,
-                "des4MapUrl" to des4MapUrl,
-                "destination5" to destination5,
-                "des5MapUrl" to des5MapUrl,
-                "acceptedBudget" to acceptedBudget,
-                "specialNotes" to specialNotes,
-                "buttonPost" to buttonPost// Associate with current user's ID
+            val tourReqData = hashMapOf(
+                "userId" to userId,
+                "tourTitle" to tourReqTitle,
+                "destination1" to tourReqestination1,
+                "des1MapUrl" to tourReqdes1MapUrl,
+                "destination2" to tourReqdestination2,
+                "des2MapUrl" to tourReqdes2MapUrl,
+                "destination3" to tourReqdestination3,
+                "des3MapUrl" to tourReqdes3MapUrl,
+                "destination4" to tourReqdestination4,
+                "des4MapUrl" to tourReqdes4MapUrl,
+                "destination5" to tourReqdestination5,
+                "des5MapUrl" to tourReqdes5MapUrl,
+                "acceptedBudget" to tourReqBudget,
+                "specialNotes" to tourReqNotes
             )
 
-            // Add data to the 'preDefinedTours' collection
-            db.collection("userTourRequest")
-                .add(tourData) // Automatically generates a document ID
+            // Add tour request data to the 'TourRequests' collection
+            db.collection("TourRequests")
+                .add(tourReqData) // This automatically generates a document ID
                 .addOnSuccessListener { documentReference ->
-                    Toast.makeText(this, "Your tour request has been submitted successfully!", Toast.LENGTH_SHORT).show()
+                    // Get the generated document ID
+                    val generatedTourReqId = documentReference.id
+
+                    // Update the tourData map to include the generated tourId
+                    val updatedTourReqData = tourReqData.toMutableMap()
+                    updatedTourReqData["tourReqId"] = generatedTourReqId
+
+                    // Now, update the Firestore document with the tourReqId field
+                    documentReference.set(updatedTourReqData) // Overwrite the document with the updated data
+                        .addOnSuccessListener {
+                            Toast.makeText(this, "Your tour request published successfully!", Toast.LENGTH_SHORT).show()
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                        }
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Tour request submission failed. Please try again: ${e.message}", Toast.LENGTH_SHORT).show()

@@ -18,8 +18,8 @@ class HomeNavBarActivity : AppCompatActivity() {
         findViewById<BottomNavigationView>(R.id.bottom_menue).setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navbarhomepage -> replacementFragment(HomeFragment())
-                R.id.navbarhotel -> replacementFragment(HotelFragment())
                 R.id.navbarrequest -> replacementFragment(RequestFragment())
+                R.id.navbarhotel -> replacementFragment(HotelFragment())
                 R.id.navbarprofile -> replacementFragment(ProfileFragment())
 
                 else -> false
