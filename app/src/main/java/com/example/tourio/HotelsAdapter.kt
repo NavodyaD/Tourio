@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 
 class HotelsAdapter(
     private val hotelList: List<Hotel>,
-    private val onHotelClick: (String) -> Unit // Callback for click handling
+    private val onHotelClick: (String) -> Unit   // Callback for click handling
 ) : RecyclerView.Adapter<HotelsAdapter.HotelViewHolder>() {
 
     inner class HotelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

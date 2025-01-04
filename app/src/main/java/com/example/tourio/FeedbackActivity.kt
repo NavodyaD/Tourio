@@ -25,7 +25,7 @@ class FeedbackActivity : AppCompatActivity() {
         feedbackEditText = findViewById(R.id.review)
         sendFeedbackButton = findViewById(R.id.sendFeedbackButton1)
 
-        // Set a click listener for the button
+
         sendFeedbackButton.setOnClickListener {
 
             // Get user inputs
@@ -33,7 +33,8 @@ class FeedbackActivity : AppCompatActivity() {
             val feedback = feedbackEditText.text.toString().trim()
 
             // Validate inputs
-            if (feedback.isEmpty()) {
+            if (feedback.isEmpty())
+            {
                 Toast.makeText(this, "Please write your feedback.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -47,7 +48,8 @@ class FeedbackActivity : AppCompatActivity() {
         val db = FirebaseFirestore.getInstance()
         val currentUser = FirebaseAuth.getInstance().currentUser
 
-        if (currentUser != null) {
+        if (currentUser != null)
+        {
             val userId = currentUser.uid
 
             // Create a map to store feedback details
@@ -70,7 +72,9 @@ class FeedbackActivity : AppCompatActivity() {
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to send feedback: ${e.message}", Toast.LENGTH_SHORT).show()
                 }
-        } else {
+        }
+        else
+        {
             // If user is not logged in
             Toast.makeText(this, "Cannot identify the user.", Toast.LENGTH_SHORT).show()
         }
