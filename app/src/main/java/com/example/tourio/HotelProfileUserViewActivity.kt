@@ -42,7 +42,7 @@ class HotelProfileUserViewActivity : AppCompatActivity() {
                             .load(hotelImageUrl)  // load the image URL from Firebase
                             .into(hotelCoverImage) // display the image in ImageView
                     } else {
-                        hotelCoverImage.setImageResource(R.drawable.img_sigiriya_1)  // set default image if URL is null or empty
+                        hotelCoverImage.setImageResource(R.drawable.img_defaultimage)  // set default image if URL is null or empty
                     }
                 } else {
                     Toast.makeText(this, "Cannot display hotel details", Toast.LENGTH_SHORT).show()

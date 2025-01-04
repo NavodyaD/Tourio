@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/navbarhomepage"
-    android:title="Home"
-    android:icon="@drawable/ic_home"
-    />
+    <item
+        android:id="@+id/navbarhomepage"
+        android:title="Home"
+        android:icon="@drawable/ic_home"
+        />
     <item
         android:id="@+id/navbarrequest"
         android:title="Reqests"
-        android:icon="@drawable/ic_requests"
-
+        android:icon="@drawable/ic_req"
         />
     <item
         android:id="@+id/navbarhotel"
-        android:title="Hotel"
+        android:title="Hotels"
         android:icon="@drawable/ic_hotels"
         />
 
     <item
         android:id="@+id/navbarprofile"
-        android:title="Profiles"
+        android:title="Profile"
         android:icon="@drawable/ic_profiles"
         />
 </menu>

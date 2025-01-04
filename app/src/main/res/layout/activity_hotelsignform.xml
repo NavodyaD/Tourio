@@ -135,7 +135,7 @@
                     android:id="@+id/hotelImagePreview"
                     android:layout_width="100dp"
                     android:layout_height="60dp"
-                    android:src="@drawable/amari_colombo_1"
+                    android:src="@drawable/img_defaultimage"
                     android:layout_marginTop="8dp"
                     android:scaleType="centerCrop"/>
 

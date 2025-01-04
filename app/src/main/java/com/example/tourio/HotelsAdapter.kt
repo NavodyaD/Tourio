@@ -4,8 +4,10 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 
 class HotelsAdapter(
     private val hotelList: List<Hotel>,
@@ -15,6 +17,7 @@ class HotelsAdapter(
     inner class HotelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val hotelNameTextView: TextView = itemView.findViewById(R.id.hotelName)
         val hotelAddressTextView: TextView = itemView.findViewById(R.id.hotelAddress)
+        val hotelCardImageView: ImageView = itemView.findViewById(R.id.hotelCardBGImage)
 
         init {
             // handle the card view click event
@@ -34,6 +37,15 @@ class HotelsAdapter(
         val hotel = hotelList[position]
         holder.hotelNameTextView.text = hotel.hotelName
         holder.hotelAddressTextView.text = hotel.hotelAddress
+
+        val hotelCardImgUrl = hotel.hotelCoverImgURL
+        if (hotelCardImgUrl.isNotEmpty()) {
+            Glide.with(holder.itemView.context)
+                .load(hotelCardImgUrl)  // Load image from Firebase Storage URL
+                .into(holder.hotelCardImageView)  // Set the image in ImageView
+        } else {
+            holder.hotelCardImageView.setImageResource(R.drawable.img_sigiriya_1) // Set a default image if no URL is available
+        }
     }
 
     override fun getItemCount(): Int {

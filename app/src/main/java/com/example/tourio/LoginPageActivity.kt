@@ -70,7 +70,7 @@ class LoginPageActivity : AppCompatActivity() {
                                         }
                                         "Hotel" -> {
                                             Toast.makeText(this, "Welcome, $userName!", Toast.LENGTH_SHORT).show()
-                                            val intent = Intent(this, HotelProfileActivity::class.java)
+                                            val intent = Intent(this, HotelDashBoardActivity::class.java)
                                             intent.putExtra("userId", currentUserId)
                                             startActivity(intent)
                                             finish()

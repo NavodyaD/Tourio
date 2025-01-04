@@ -15,7 +15,7 @@
 
 
         <activity
-            android:name=".BookTourActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -47,6 +47,11 @@
 
         <activity android:name=".HomeNavBarActivity"/>
 
+        <activity android:name=".BookTourActivity"/>
+
+        <activity android:name=".PublishedRequestsPageActivity"/>
+
+        <activity android:name=".HotelDashBoardActivity"/>
 
 
     </application>

@@ -31,7 +31,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Hi, Emma"
+                android:text="Hello Traveler!"
                 android:textSize="28dp"
                 android:textStyle="bold"
                 android:id="@+id/FeedbackTitle"
@@ -55,8 +55,19 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginLeft="40dp"
-        android:layout_marginVertical="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_below="@+id/profile_page_top">
+
+        <Button
+            android:id="@+id/travelerLogoutButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Log out"
+            android:drawableLeft="@drawable/ic_logout"
+            android:textColor="@color/white"
+            android:backgroundTint="#1F1F1F"
+            android:layout_marginTop="20dp"/>
 
         <TextView
             android:layout_width="wrap_content"

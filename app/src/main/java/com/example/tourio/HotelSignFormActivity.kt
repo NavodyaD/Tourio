@@ -105,7 +105,11 @@ class HotelSignFormActivity : AppCompatActivity() {
             db.collection("Hotels")
                 .add(hotelData) // generates a document ID automatically
                 .addOnSuccessListener { documentReference ->
-                    Toast.makeText(this, "Hotel account setup successful!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Welcome, $hotelName!", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, HotelDashBoardActivity::class.java)
+                    intent.putExtra("userId", userId)
+                    startActivity(intent)
+                    finish()
                 }
                 .addOnFailureListener { e ->
                     Toast.makeText(this, "Failed to setup hotel profile: ${e.message}", Toast.LENGTH_SHORT).show()

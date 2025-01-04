@@ -1,14 +1,12 @@
-package com.example.hotelapp
+package com.example.tourio
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tourio.HomePageActivity
-import com.example.tourio.HotelProfileActivity
-import com.example.tourio.PreDefinedToursFormActivity
-import com.example.tourio.R
-import com.example.tourio.TravelerProfileActivity
+import com.google.firebase.auth.FirebaseAuth
 
 class HotelDashBoardActivity : AppCompatActivity() {
 
@@ -22,6 +20,8 @@ class HotelDashBoardActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hoteldashboard)
 
+        val userId = intent.getStringExtra("userId") ?: return
+
         // Initialize the boxes
         profileBox = findViewById(R.id.profileBox)
         yourToursBox = findViewById(R.id.yourToursBox)
@@ -31,22 +31,48 @@ class HotelDashBoardActivity : AppCompatActivity() {
         // Set click listeners for navigation
         profileBox.setOnClickListener {
             val intent = Intent(this, HotelProfileActivity::class.java)
+            intent.putExtra("userId", userId)
             startActivity(intent)
         }
 
         yourToursBox.setOnClickListener {
-            val intent = Intent(this, PreDefinedToursFormActivity::class.java)
+            val intent = Intent(this, PublishedRequestsPageActivity::class.java)
+            intent.putExtra("userId", userId)
             startActivity(intent)
         }
 
         travelRequestBox.setOnClickListener {
-            val intent = Intent(this, TravelerProfileActivity::class.java)
-            startActivity(intent)
+            //val intent = Intent(this, TravelerProfileActivity::class.java)
+            //startActivity(intent)
         }
 
         viewHomeBox.setOnClickListener {
-            val intent = Intent(this, HomePageActivity::class.java)
+            val intent = Intent(this, PreDefinedToursFormActivity::class.java)
             startActivity(intent)
         }
+
+
+        val logOutButton = findViewById<Button>(R.id.hotelDBLogoutButton)
+
+        logOutButton.setOnClickListener {
+            // Log the user out of Firebase Authentication (if using Firebase)
+            FirebaseAuth.getInstance().signOut()
+
+            // Optional: Clear any other session data or preferences
+            val sharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+            sharedPreferences.edit().clear().apply()
+
+            // Log the logout action
+            Log.d("Logout", "User has logged out")
+
+            // Redirect to the Get Started or Login page
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK // Clear back stack
+            startActivity(intent)
+
+            // Finish the current activity (optional)
+            finish()
+        }
+
     }
 }

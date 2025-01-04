@@ -32,7 +32,7 @@ class HomeFragment : Fragment() {
         // Initialize the adapter and set the item click listener
         adapter = PredefinedTourAdapter(preDefTourList) { preDefTourId ->
             // Handle item click and navigate to hotel details
-            val intent = Intent(activity, HomePageActivity::class.java)
+            val intent = Intent(activity, BookTourActivity::class.java)
             intent.putExtra("preDefTourId", preDefTourId)
             startActivity(intent)
         }

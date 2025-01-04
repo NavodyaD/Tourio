@@ -26,7 +26,7 @@ class HomePageActivity : AppCompatActivity() {
 
         adapter = PredefinedTourAdapter(preDefTourList) { preDefTourId ->
             // navigate user to hotel details page with userId
-            //val intent = Intent(this, HotelProfileUserViewActivity::class.java)
+            val intent = Intent(this, BookTourActivity::class.java)
             intent.putExtra("preDefTourId", preDefTourId)
             startActivity(intent)
         }
