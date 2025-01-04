@@ -34,6 +34,12 @@
 
         <activity android:name=".HotelProfileUserViewActivity"/>
 
+        <activity android:name=".HotelProfileActivity"/>
+
+        <activity android:name=".HotelsPageActivity"/>
+
+        <activity android:name=".PreDefinedToursFormActivity"/>
+
         <activity android:name=".UserToursRequestFormActivity"/>
 
 
