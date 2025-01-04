@@ -12,8 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Tourio"
         tools:targetApi="31">
+
+
         <activity
-            android:name=".MainActivity"
+            android:name=".BookTourActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,9 +34,10 @@
 
         <activity android:name=".HotelSignFormActivity"/>
 
-        <activity android:name=".HotelProfileUserViewActivity"/>
 
         <activity android:name=".HotelProfileActivity"/>
+
+        <activity android:name=".HotelProfileUserViewActivity"/>
 
         <activity android:name=".HotelsPageActivity"/>
 
