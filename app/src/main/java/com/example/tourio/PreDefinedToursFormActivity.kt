@@ -1,27 +1,78 @@
 package com.example.tourio
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.coroutines.delay
+import java.util.UUID
 
 class PreDefinedToursFormActivity : AppCompatActivity()
 {
+
+    private lateinit var tourCoverImgView: ImageView
+    private var selectedTourImageUri: Uri? = null
+    private val PICK_IMAGE_REQUEST = 1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_predefinedtoursform)
 
+        tourCoverImgView = findViewById(R.id.tourImagePreview)
+
+        val pickImageButton = findViewById<Button>(R.id.pickTourImageButton)
         val continueButton = findViewById<Button>(R.id.buttonContinue1)
+
+        pickImageButton.setOnClickListener {
+            openImagePicker()
+        }
+
         continueButton.setOnClickListener {
-            addPreDefinedToursDetails()
+            if (selectedTourImageUri != null) {
+                uploadTourImageToFirebase()
+            } else {
+                addPreDefinedToursDetails("")
+            }
         }
     }
 
-    private fun addPreDefinedToursDetails() {
+    private fun openImagePicker() {
+        // open the gallery to select an image
+        val intent = Intent(Intent.ACTION_PICK).apply { type = "image/*" }
+        startActivityForResult(intent, PICK_IMAGE_REQUEST)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK) {
+            // set the URL of selected image to the imageView to preview
+            selectedTourImageUri = data?.data
+            tourCoverImgView.setImageURI(selectedTourImageUri)
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun uploadTourImageToFirebase() {
+        val storageRef = FirebaseStorage.getInstance().reference.child("hotel_images/${UUID.randomUUID()}")
+
+        storageRef.putFile(selectedTourImageUri!!)
+            .addOnSuccessListener {
+                storageRef.downloadUrl.addOnSuccessListener { uri ->
+                    addPreDefinedToursDetails(uri.toString())
+                }
+            }
+            .addOnFailureListener { e ->
+                Toast.makeText(this, "Image upload failed: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun addPreDefinedToursDetails(imageUrl: String) {
         val db = FirebaseFirestore.getInstance()
         val currentUser = FirebaseAuth.getInstance().currentUser
 
@@ -59,6 +110,7 @@ class PreDefinedToursFormActivity : AppCompatActivity()
             val tourData = hashMapOf(
                 "tourTitle" to tourTitle,
                 "destination1" to destination1,
+                "tourCoverImgURL" to imageUrl,
                 "des1MapUrl" to des1MapUrl,
                 "destination2" to destination2,
                 "des2MapUrl" to des2MapUrl,
